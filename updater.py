@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Do not import it. It is standalone.
+"""Do not import it. It is a standalone file.
     Run it for the first time to see how to use it"""
 
 from sys import argv
