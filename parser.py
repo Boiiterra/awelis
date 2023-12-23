@@ -1,11 +1,5 @@
-class markdown(str):
-    """Just a fancy name for str"""
-    pass
-
-
-class html(str):
-    """Just a fancy name for str"""
-    pass
+markdown = str
+html = str
 
 
 def __sur_h(value: str, header_type: int) -> [str, bool]:
