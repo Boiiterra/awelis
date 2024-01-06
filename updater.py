@@ -45,7 +45,8 @@ if (len(argv) == 2) and (argv[1] not in flags):
             file.close()
 
     else:
-        print(f"Provided path is invalid there is no file: {filepath}")
+        print(f"Provided path is invalid it is not a file: {filepath}")
+        help()
         exit(1)
 
     exit(0)
