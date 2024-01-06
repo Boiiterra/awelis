@@ -1,9 +1,34 @@
+from re import match, Match
+
 markdown = str
 html = str
 
 
-def __sur_h(value: str, header_type: int) -> [str, bool]:
-    return f"<h{header_type}>{value[header_type + 1:]}</h{header_type}>", True
+class HeaderError(Exception):
+    def __init__(self, header_type: int):
+        super().__init__(
+            f"Header {header_type} does not exist.\n"
+            "Headers fall in range from 1 up to 6."
+        )
+
+
+def make_header(value: str, header_type: int) -> str:
+    """Can raise an exception"""
+    if header_type < 1 or header_type > 6:
+        raise HeaderError(header_type)
+
+    return f"<h{header_type}>{value[header_type + 1:]}</h{header_type}>"
+
+
+def match_header(line: str, header_type: int) -> bool:
+    """Can raise an exception"""
+    if header_type < 1 or header_type > 6:
+        raise HeaderError(header_type)
+
+    reg = "#" * header_type + " .*"
+
+    mtch = match(reg, line)
+    return mtch
 
 
 def parser(content: markdown) -> html:
@@ -13,17 +38,19 @@ def parser(content: markdown) -> html:
         if not len(line):  # ignore empty line
             continue
 
-        matched = False
+        matched: bool | Match = False
 
         # Headers
-        match line.split()[0]:
-            case "#": line, matched = __sur_h(line, 1)
-            case "##": line, matched = __sur_h(line, 2)
-            case "###": line, matched = __sur_h(line, 3)
-            case "####": line, matched = __sur_h(line, 4)
-            case "#####": line, matched = __sur_h(line, 5)
-            case "######": line, matched = __sur_h(line, 6)
+        header = line.count("#")
+        if 1 <= header <= 6:
+            matched = match_header(line, header)
+            if isinstance(matched, Match):
+                line = make_header(matched.group(0), header)
 
-        page += "<p>" * (not matched) + line + "</p>" * (not matched)
+        if not matched:
+            line = f"<p>{line}</p>"
 
+        page += line + "\n"
+
+    print(page)
     return page
