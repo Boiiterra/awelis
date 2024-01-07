@@ -20,7 +20,7 @@ class TestWebmark(unittest.TestCase):
 
     def test_invalid_md_header(self):
         for ht in range(1, 7):
-            t = "#" * (ht+1) + " Invalid header with valid amount of #"
+            t = "#" * ht + " Invalid header with valid amount of #"
             with self.assertRaises(InvalidMarkdown):
                 make_header(t, ht)
 
@@ -35,12 +35,12 @@ class TestWebmark(unittest.TestCase):
             self.assertIsInstance(match_header(t, ht), Match)
 
     def test_header_matcher_invalid(self):
-        for ht in range(2, 8):
-            t = "#" * ht + " This is wrong test header"
+        for ht in range(1, 7):
+            t = "#" * (ht - 1) + " This is wrong test header"
             self.assertIsNone(match_header(t, ht))
 
-        for ht in range(0, 6):
-            t = "#" * ht + " This is wrong test header"
+        for ht in range(1, 7):
+            t = "#" * (ht + 1) + " This is wrong test header"
             self.assertIsNone(match_header(t, ht))
 
         for ht in [n for n in range(-5, 10) if 1 > n or n > 6]:
