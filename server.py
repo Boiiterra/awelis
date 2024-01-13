@@ -48,7 +48,6 @@ def show() -> Page:
         file.close()
         file = open(nfile, "r")
         data = file.read()
-
         data = parser(data)
 
         file.close()
@@ -75,13 +74,9 @@ def reloader():
             old[1] = "RELOAD='False'"
             file.write("\n".join(old))
 
+    # TODO: Add file edit time status
+
     return status
-
-
-def booly(string: str) -> bool:
-    if not string:
-        return False
-    return string == "True"
 
 
 def start_server():
