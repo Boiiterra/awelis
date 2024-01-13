@@ -26,7 +26,7 @@ and it is valid
 
 Hehee # hehe
 This file is created for testing \
-This one is on new line.
+This one is on new line.  
 And this one too.
 
 <p>This one is not parsed as it is valid html</p>
@@ -100,3 +100,15 @@ Nesting
 2. El 2
 3. El 3
 
+## Some HTML
+
+This can be found [here](https://github.com/boiiterra/Webdev_notes#span-and-div "Span and div").
+
+<div style="background-color: #666666;">
+    <p>
+        <span style="color:red;">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span> Quasi fugiat deleniti tenetur. Adipisci ratione, repudiandae dolorem magni consectetur dolore libero unde velit est quod, delectus nesciunt. Consequuntur, dolore dolorum! Nostrum.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quas eveniet fugit laudantium officia quam quos cum, minima dolorum soluta blanditiis sed ut consequatur consectetur. Nostrum quidem eum maiores cupiditate!
+    </p>
+</div>
